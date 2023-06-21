@@ -9,13 +9,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.springframework.data.domain.Page;
 
 @Mapper
 public interface ManufacturerMapper {
 
     ManufacturerResponse toResponse(Manufacturer manufacturer);
 
-    Iterable<ManufacturerResponse> toResponse(Iterable<Manufacturer> manufacturers);
+    default Page<ManufacturerResponse> toResponse(Page<Manufacturer> manufacturers) {
+        return manufacturers.map(this::toResponse);
+    }
 
     ManufacturerDTO toDTO(ManufacturerCreateRequest createRequest);
 

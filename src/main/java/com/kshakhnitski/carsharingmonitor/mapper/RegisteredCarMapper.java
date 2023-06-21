@@ -10,6 +10,7 @@ import com.kshakhnitski.carsharingmonitor.model.RegisteredCar;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.springframework.data.domain.Page;
 
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 
@@ -19,7 +20,9 @@ import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 public interface RegisteredCarMapper {
     RegisteredCarResponse toResponse(RegisteredCar registeredCar);
 
-    Iterable<RegisteredCarResponse> toResponse(Iterable<RegisteredCar> registeredCars);
+    default Page<RegisteredCarResponse> toResponse(Page<RegisteredCar> registeredCars) {
+        return registeredCars.map(this::toResponse);
+    }
 
     RegisteredCarDTO toDTO(CarRegistrationRequest registrationRequest, CarSharingCompany carSharingCompany, CarModel carModel);
 

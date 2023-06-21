@@ -7,6 +7,8 @@ import com.kshakhnitski.carsharingmonitor.model.Manufacturer;
 import com.kshakhnitski.carsharingmonitor.repo.ManufacturerRepo;
 import com.kshakhnitski.carsharingmonitor.service.ManufacturerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +18,8 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     private final ManufacturerMapper mapper;
 
     @Override
-    public Iterable<Manufacturer> getManufacturers() {
-        return manufacturerRepo.findAll();
+    public Page<Manufacturer> getManufacturers(Pageable pageable) {
+        return manufacturerRepo.findAll(pageable);
     }
 
     @Override

@@ -2,9 +2,11 @@ package com.kshakhnitski.carsharingmonitor.service;
 
 import com.kshakhnitski.carsharingmonitor.dto.registeredcar.RegisteredCarDTO;
 import com.kshakhnitski.carsharingmonitor.model.RegisteredCar;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface RegisteredCarService {
-    Iterable<RegisteredCar> getRegisteredCars();
+    Page<RegisteredCar> getRegisteredCars(Pageable pageable);
 
     RegisteredCar getRegisteredCarById(Long registeredCarId);
 

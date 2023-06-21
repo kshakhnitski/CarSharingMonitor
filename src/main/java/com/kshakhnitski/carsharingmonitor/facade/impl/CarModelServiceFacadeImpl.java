@@ -12,6 +12,8 @@ import com.kshakhnitski.carsharingmonitor.service.CarModelService;
 import com.kshakhnitski.carsharingmonitor.service.ManufacturerService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,8 +25,8 @@ public class CarModelServiceFacadeImpl implements CarModelServiceFacade {
     private final CarModelMapper mapper;
 
     @Override
-    public Iterable<CarModelResponse> getCarModels() {
-        Iterable<CarModel> carModels = carModelService.getCarModels();
+    public Page<CarModelResponse> getCarModels(Pageable pageable) {
+        Page<CarModel> carModels = carModelService.getCarModels(pageable);
         return mapper.toResponse(carModels);
     }
 

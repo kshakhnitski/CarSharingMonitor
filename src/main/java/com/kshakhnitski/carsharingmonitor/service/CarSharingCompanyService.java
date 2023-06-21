@@ -2,9 +2,11 @@ package com.kshakhnitski.carsharingmonitor.service;
 
 import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompanyDTO;
 import com.kshakhnitski.carsharingmonitor.model.CarSharingCompany;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CarSharingCompanyService {
-    Iterable<CarSharingCompany> getCarSharingCompanies();
+    Page<CarSharingCompany> getCarSharingCompanies(Pageable pageable);
 
     CarSharingCompany getCarSharingCompanyById(Long carSharingCompanyId);
 

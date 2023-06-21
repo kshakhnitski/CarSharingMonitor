@@ -10,6 +10,8 @@ import com.kshakhnitski.carsharingmonitor.model.Manufacturer;
 import com.kshakhnitski.carsharingmonitor.service.ManufacturerService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,8 +22,8 @@ public class ManufacturerServiceFacadeImpl implements ManufacturerServiceFacade 
     private final ManufacturerMapper mapper;
 
     @Override
-    public Iterable<ManufacturerResponse> getManufacturers() {
-        Iterable<Manufacturer> manufacturers = manufacturerService.getManufacturers();
+    public Page<ManufacturerResponse> getManufacturers(Pageable pageable) {
+        Page<Manufacturer> manufacturers = manufacturerService.getManufacturers(pageable);
         return mapper.toResponse(manufacturers);
     }
 

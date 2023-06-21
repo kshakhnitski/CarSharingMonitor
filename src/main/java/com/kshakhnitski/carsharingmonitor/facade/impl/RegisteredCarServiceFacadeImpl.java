@@ -14,6 +14,8 @@ import com.kshakhnitski.carsharingmonitor.service.CarSharingCompanyService;
 import com.kshakhnitski.carsharingmonitor.service.RegisteredCarService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,8 +28,8 @@ public class RegisteredCarServiceFacadeImpl implements RegisteredCarServiceFacad
     private final RegisteredCarMapper mapper;
 
     @Override
-    public Iterable<RegisteredCarResponse> getRegisteredCars() {
-        Iterable<RegisteredCar> registeredCars = registeredCarService.getRegisteredCars();
+    public Page<RegisteredCarResponse> getRegisteredCars(Pageable pageable) {
+        Page<RegisteredCar> registeredCars = registeredCarService.getRegisteredCars(pageable);
         return mapper.toResponse(registeredCars);
     }
 

@@ -3,9 +3,11 @@ package com.kshakhnitski.carsharingmonitor.facade;
 import com.kshakhnitski.carsharingmonitor.dto.registeredcar.CarRegistrationRequest;
 import com.kshakhnitski.carsharingmonitor.dto.registeredcar.RegisteredCarResponse;
 import com.kshakhnitski.carsharingmonitor.dto.registeredcar.RegisteredCarUpdateRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface RegisteredCarServiceFacade {
-    Iterable<RegisteredCarResponse> getRegisteredCars();
+    Page<RegisteredCarResponse> getRegisteredCars(Pageable pageable);
 
     RegisteredCarResponse getRegisteredCar(Long registeredCarId);
 

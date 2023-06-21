@@ -7,6 +7,8 @@ import com.kshakhnitski.carsharingmonitor.model.CarSharingCompany;
 import com.kshakhnitski.carsharingmonitor.repo.CarSharingCompanyRepo;
 import com.kshakhnitski.carsharingmonitor.service.CarSharingCompanyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +18,8 @@ public class CarSharingCompanyServiceImpl implements CarSharingCompanyService {
     private final CarSharingCompanyMapper mapper;
 
     @Override
-    public Iterable<CarSharingCompany> getCarSharingCompanies() {
-        return carSharingCompanyRepo.findAll();
+    public Page<CarSharingCompany> getCarSharingCompanies(Pageable pageable) {
+        return carSharingCompanyRepo.findAll(pageable);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.kshakhnitski.carsharingmonitor.model.Manufacturer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.springframework.data.domain.Page;
 
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 
@@ -15,7 +16,9 @@ public interface CarModelMapper {
 
     CarModelResponse toResponse(CarModel carModel);
 
-    Iterable<CarModelResponse> toResponse(Iterable<CarModel> carModels);
+    default Page<CarModelResponse> toResponse(Page<CarModel> carModels) {
+        return carModels.map(this::toResponse);
+    }
 
     @Mapping(target = "model", source = "createRequest.model")
     CarModelDTO toDTO(CarModelCreateRequest createRequest, Manufacturer manufacturer);

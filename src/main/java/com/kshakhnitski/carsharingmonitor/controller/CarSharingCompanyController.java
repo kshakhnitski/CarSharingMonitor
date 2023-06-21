@@ -4,8 +4,12 @@ import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompan
 import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompanyResponse;
 import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompanyUpdateRequest;
 import com.kshakhnitski.carsharingmonitor.facade.CarSharingCompanyServiceFacade;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +21,9 @@ public class CarSharingCompanyController {
     private final CarSharingCompanyServiceFacade facade;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<CarSharingCompanyResponse> getCarSharingCompanies() {
-        return facade.getCarSharingCompanies();
+    @PageableAsQueryParam
+    public Page<CarSharingCompanyResponse> getCarSharingCompanies(@Parameter(hidden = true) Pageable pageable) {
+        return facade.getCarSharingCompanies(pageable);
     }
 
     @GetMapping(value = "/{carSharingCompanyId}",

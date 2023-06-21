@@ -4,8 +4,12 @@ import com.kshakhnitski.carsharingmonitor.dto.manufactuer.ManufacturerCreateRequ
 import com.kshakhnitski.carsharingmonitor.dto.manufactuer.ManufacturerResponse;
 import com.kshakhnitski.carsharingmonitor.dto.manufactuer.ManufacturerUpdateRequest;
 import com.kshakhnitski.carsharingmonitor.facade.ManufacturerServiceFacade;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +21,9 @@ public class ManufacturerController {
     private final ManufacturerServiceFacade facade;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<ManufacturerResponse> getManufacturers() {
-        return facade.getManufacturers();
+    @PageableAsQueryParam
+    public Page<ManufacturerResponse> getManufacturers(@Parameter(hidden = true) Pageable pageable) {
+        return facade.getManufacturers(pageable);
     }
 
     @GetMapping(value = "/{manufacturerId}",

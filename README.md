@@ -165,40 +165,41 @@ Swagger UI доступен по URL - `http://localhost:8080/swagger-ui`
 
 Проект использует следующие зависимости:
 
-- **Spring (версия 6.0.9)**: Фреймворк для разработки приложений на JVM-языках. Он обеспечивает инверсию управления (
+- `Spring (версия 6.0.9)`: Фреймворк для разработки приложений на JVM-языках. Он обеспечивает инверсию управления (
   IoC) и
   внедрение зависимостей (DI), что упрощает управление объектами и их взаимосвязи в приложении. Spring также
   предлагает модульную структуру, которая позволяет разработчикам выбирать и использовать только необходимые модули,
   делая разработку более гибкой и расширяемой.
-- **Spring Boot (версия 3.1.0)**: Фреймворк, основанный на фреймворке Spring, который облегчает создание и развертывание
+- `Spring Boot (версия 3.1.0)`: Фреймворк, основанный на фреймворке Spring, который облегчает создание и развертывание
   приложений. Он предоставляет конфигурацию по умолчанию и автоматическое управление зависимостями. За счёт
   этого он позволяет разработчикам сосредоточиться на бизнес-логике своих приложений, минимизируя необходимость в явной
   конфигурации и управлении.
-- **Spring Boot Starter Web (версия 3.1.0)**: Предоставляет все необходимое для разработки веб-приложения с
+- `Spring Boot Starter Web (версия 3.1.0)`: Предоставляет все необходимое для разработки веб-приложения с
   использованием
   Spring MVC в рамках Spring Boot. Включает в себя следущее:
-    - Spring MVC: Фреймворк веб-приложений, использующий Servlets API и модель MVC для разработки веб-приложений. Он
+    - `Spring MVC`: Фреймворк веб-приложений, использующий Servlets API и модель MVC для разработки веб-приложений. Он
       упрощает создание контроллеров и обработку HTTP-запросов и создание HTTP-ответов.
-    - Встроенный контейнер сервлетов: Spring Boot включает в себя встроенный контейнер сервлетов (использовался Tomcat),
+    - `Встроенный контейнер сервлетов`: Spring Boot включает в себя встроенный контейнер сервлетов (использовался
+      Tomcat),
       что позволяет запускать веб-приложение без необходимости настройки и развертывания отдельного
       контейнера сервлетов.
-- **Spring Boot Starter Data JPA (версия 3.1.0)**: Обеспечивает интеграцию JPA с Spring Boot и упрощает работу с базой
+- `Spring Boot Starter Data JPA (версия 3.1.0)`: Обеспечивает интеграцию JPA с Spring Boot и упрощает работу с базой
   данных в приложени. Включает в себя следующее:
-    - Spring Data JPA: Предоставляет мощные функции для создания интерфейсов репозиториев для работы с базой данных.
+    - `Spring Data JPA`: Предоставляет мощные функции для создания интерфейсов репозиториев для работы с базой данных.
       Имплементация репозиториев создаётся фреймворком автоматически на основе названий методов репозитория.
-    - Hibernate (версия 6.2.2): Популярная реализация JPA, которая является стандартом для работы с
+    - `Hibernate (версия 6.2.2)`: Популярная реализация JPA, которая является стандартом для работы с
       объектно-реляционным отображением (ORM) в Java. Он обеспечивает отображение Java-объектов на таблицы реаляционной
       базы данных.
-- **Spring Boot Starter Validation (версия 3.1.0)**: Зависимость для валидации объектов. В моём случае использовалась
+- `Spring Boot Starter Validation (версия 3.1.0)`: Зависимость для валидации объектов. В моём случае использовалась
   для валидации объектов в теле HTTP-запроса.
-- **PostgreSQL JDBC-драйвер (версия 42.6.0)**: Представляет собой драйвер JDBC для работы с PostgreSQL базой данных в
+- `PostgreSQL JDBC-драйвер (версия 42.6.0)`: Представляет собой драйвер JDBC для работы с PostgreSQL базой данных в
   Java-приложениях.
-- **Lombok (версия 1.18.26)**: Зависимость для автоматической генерации геттеров, сеттеров и другого повторяющегося
+- `Lombok (версия 1.18.26)`: Зависимость для автоматической генерации геттеров, сеттеров и другого повторяющегося
   кода.
-- **MapStruct (версия 1.5.5)**: Зависимость для генерации мапперов между классами.
-- **Flyway (версия 9.16.3)**: Зависимость для управления миграциями базы данных. В приложении использовалась для
+- `MapStruct (версия 1.5.5)`: Зависимость для генерации мапперов между классами.
+- `Flyway (версия 9.16.3)`: Зависимость для управления миграциями базы данных. В приложении использовалась для
   инициализации схемы БД.
-- **SpringDoc OpenAPI Starter WebMVC-UI (версия 2.1.0)**: Предоставляет интеграцию с OpenAPI и Swagger UI в проекте на
+- `SpringDoc OpenAPI Starter WebMVC-UI (версия 2.1.0)`: Предоставляет интеграцию с OpenAPI и Swagger UI в проекте на
   основе фреймворка Spring. Она позволяет генерировать и представлять документацию API в удобном веб-интерфейсе.
 
 ## Запросы
@@ -245,16 +246,43 @@ curl -X 'GET' \
 200 OK
 
 ```json
-[
-  {
-    "id": 0,
-    "name": "Manufacturer A"
+{
+  "content": [
+    {
+      "id": 0,
+      "name": "Manufacturer A"
+    },
+    {
+      "id": 1,
+      "name": "Manufacturer B"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 20,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "id": 1,
-    "name": "Manufacturer B"
-  }
-]
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}
 ```
 
 #### 1.3. Получить производителя автомобилей
@@ -370,30 +398,57 @@ curl -X 'GET' \
 200 OK
 
 ```json
-[
-  {
-    "id": 0,
-    "model": "Model A",
-    "manufacturer": {
+{
+  "content": [
+    {
       "id": 0,
-      "name": "Manufacturer A"
+      "model": "Model A",
+      "manufacturer": {
+        "id": 0,
+        "name": "Manufacturer A"
+      },
+      "seats": 4,
+      "fuelType": "ELECTRIC",
+      "transmissionType": "AUTOMATIC"
     },
-    "seats": 4,
-    "fuelType": "ELECTRIC",
-    "transmissionType": "AUTOMATIC"
+    {
+      "id": 1,
+      "model": "Model B",
+      "manufacturer": {
+        "id": 0,
+        "name": "Manufacturer A"
+      },
+      "seats": 4,
+      "fuelType": "PETROL",
+      "transmissionType": "MANUAL"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 20,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "id": 1,
-    "model": "Model B",
-    "manufacturer": {
-      "id": 0,
-      "name": "Manufacturer A"
-    },
-    "seats": 4,
-    "fuelType": "PETROL",
-    "transmissionType": "MANUAL"
-  }
-]
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}
 ```
 
 #### 2.3. Получить модель автомобиля
@@ -563,26 +618,53 @@ curl -X 'GET' \
 200 OK
 
 ```json
-[
-  {
-    "id": 0,
-    "name": "CarShare A",
-    "description": "Some description",
-    "address": "Some address",
-    "supportPhones": [
-      "375123421234",
-      "375256312342",
-      "375134647581"
-    ]
+{
+  "content": [
+    {
+      "id": 0,
+      "name": "CarShare A",
+      "description": "Some description",
+      "address": "Some address",
+      "supportPhones": [
+        "375123421234",
+        "375256312342",
+        "375134647581"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "CarShareComp X",
+      "description": "Description of company",
+      "address": "Some company address",
+      "supportPhones": []
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 20,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "id": 1,
-    "name": "CarShareComp X",
-    "description": "Description of company",
-    "address": "Some company address",
-    "supportPhones": []
-  }
-]
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}
 ```
 
 #### 3.3. Получить каршеринговую компанию
@@ -717,49 +799,76 @@ curl -X 'GET' \
 200 OK
 
 ```json
-[
-  {
-    "id": 0,
-    "licensePlateNumber": "PLATEEXAMPLE1",
-    "carSharingCompany": {
+{
+  "content": [
+    {
       "id": 0,
-      "name": "CarShare A"
-    },
-    "carModel": {
-      "id": 0,
-      "manufacturer": {
+      "licensePlateNumber": "PLATEEXAMPLE1",
+      "carSharingCompany": {
         "id": 0,
-        "name": "Manufacturer A"
+        "name": "CarShare A"
       },
-      "model": "Model A"
+      "carModel": {
+        "id": 0,
+        "manufacturer": {
+          "id": 0,
+          "name": "Manufacturer A"
+        },
+        "model": "Model A"
+      },
+      "pricePerMinute": 25.26,
+      "location": {
+        "latitude": 25.2136,
+        "longitude": 41.23654
+      },
+      "isAvailable": false
     },
-    "pricePerMinute": 25.26,
-    "location": {
-      "latitude": 25.2136,
-      "longitude": 41.23654
+    {
+      "id": 1,
+      "licensePlateNumber": "SOMENUMBER152",
+      "carSharingCompany": {
+        "id": 0,
+        "name": "CarShare A"
+      },
+      "carModel": {
+        "id": 0,
+        "manufacturer": {
+          "id": 0,
+          "name": "Manufacturer A"
+        },
+        "model": "Model A"
+      },
+      "pricePerMinute": 15.23,
+      "location": null,
+      "isAvailable": true
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
     },
-    "isAvailable": false
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 20,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "id": 1,
-    "licensePlateNumber": "SOMENUMBER152",
-    "carSharingCompany": {
-      "id": 0,
-      "name": "CarShare A"
-    },
-    "carModel": {
-      "id": 0,
-      "manufacturer": {
-        "id": 0,
-        "name": "Manufacturer A"
-      },
-      "model": "Model A"
-    },
-    "pricePerMinute": 15.23,
-    "location": null,
-    "isAvailable": true
-  }
-]
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}
 ```
 
 #### 4.3. Получить зарегистрированный автомобиль

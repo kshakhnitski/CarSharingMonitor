@@ -6,8 +6,12 @@ import com.kshakhnitski.carsharingmonitor.dto.carmodel.CarModelUpdateRequest;
 import com.kshakhnitski.carsharingmonitor.facade.CarModelServiceFacade;
 import com.kshakhnitski.carsharingmonitor.model.FuelType;
 import com.kshakhnitski.carsharingmonitor.model.TransmissionType;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +23,9 @@ public class CarModelController {
     private final CarModelServiceFacade facade;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<CarModelResponse> getCarModels() {
-        return facade.getCarModels();
+    @PageableAsQueryParam
+    public Page<CarModelResponse> getCarModels(@Parameter(hidden = true) Pageable pageable) {
+        return facade.getCarModels(pageable);
     }
 
     @GetMapping(value = "/{carModelId}",

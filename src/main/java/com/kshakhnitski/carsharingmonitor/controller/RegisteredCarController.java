@@ -4,8 +4,12 @@ import com.kshakhnitski.carsharingmonitor.dto.registeredcar.CarRegistrationReque
 import com.kshakhnitski.carsharingmonitor.dto.registeredcar.RegisteredCarResponse;
 import com.kshakhnitski.carsharingmonitor.dto.registeredcar.RegisteredCarUpdateRequest;
 import com.kshakhnitski.carsharingmonitor.facade.RegisteredCarServiceFacade;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +21,9 @@ public class RegisteredCarController {
     private final RegisteredCarServiceFacade facade;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<RegisteredCarResponse> getRegisteredCars() {
-        return facade.getRegisteredCars();
+    @PageableAsQueryParam
+    public Page<RegisteredCarResponse> getRegisteredCars(@Parameter(hidden = true) Pageable pageable) {
+        return facade.getRegisteredCars(pageable);
     }
 
     @GetMapping(value = "/{registeredCarId}",

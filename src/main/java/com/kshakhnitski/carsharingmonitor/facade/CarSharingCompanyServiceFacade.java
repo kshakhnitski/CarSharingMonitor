@@ -3,9 +3,11 @@ package com.kshakhnitski.carsharingmonitor.facade;
 import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompanyCreateRequest;
 import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompanyResponse;
 import com.kshakhnitski.carsharingmonitor.dto.carsharingcompany.CarSharingCompanyUpdateRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CarSharingCompanyServiceFacade {
-    Iterable<CarSharingCompanyResponse> getCarSharingCompanies();
+    Page<CarSharingCompanyResponse> getCarSharingCompanies(Pageable pageable);
 
     CarSharingCompanyResponse getCarSharingCompany(Long carSharingCompanyId);
 
