@@ -1,1 +1,24 @@
+spring:
+  datasource:
+    username: postgres
+    password: password
+    url: jdbc:postgresql://localhost:5432/car_sharing_monitor?TimeZone=UTC
+    driver-class-name: org.postgresql.Driver
 
+    hikari:
+      maximum-pool-size: 20
+      pool-name: MyConnectionPool
+      connectionTimeout: 10000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: off
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    tags-sorter: alpha
+    operations-sorter: alpha
