@@ -1,6 +1,5 @@
 package com.kshakhnitski.carsharingmonitor.dto.registeredcar;
 
-import com.kshakhnitski.carsharingmonitor.model.CarLocation;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -26,6 +25,4 @@ public class CarRegistrationRequest {
     private BigDecimal pricePerMinute;
 
     private Boolean isAvailable = false;
-
-    private CarLocation location;
 }

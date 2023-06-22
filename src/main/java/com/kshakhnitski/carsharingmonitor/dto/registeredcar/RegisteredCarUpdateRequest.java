@@ -1,6 +1,5 @@
 package com.kshakhnitski.carsharingmonitor.dto.registeredcar;
 
-import com.kshakhnitski.carsharingmonitor.model.CarLocation;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
@@ -25,6 +24,4 @@ public class RegisteredCarUpdateRequest {
     private BigDecimal pricePerMinute;
 
     private Boolean isAvailable;
-
-    private CarLocation location;
 }

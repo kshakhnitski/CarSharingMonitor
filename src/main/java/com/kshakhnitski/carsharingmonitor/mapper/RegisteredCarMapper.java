@@ -24,8 +24,10 @@ public interface RegisteredCarMapper {
         return registeredCars.map(this::toResponse);
     }
 
+    @Mapping(target = "location", ignore = true)
     RegisteredCarDTO toDTO(CarRegistrationRequest registrationRequest, CarSharingCompany carSharingCompany, CarModel carModel);
 
+    @Mapping(target = "location", ignore = true)
     RegisteredCarDTO toDTO(RegisteredCarUpdateRequest updateRequest, CarSharingCompany carSharingCompany, CarModel carModel);
 
     @Mapping(target = "id", ignore = true)
